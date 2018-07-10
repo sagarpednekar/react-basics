@@ -23,7 +23,7 @@ class Cycle extends Component {
   }
   handleRandom(){
     this.setState({
-      myNumber: Math.floor(Math.random()*100)
+      myNumber: Math.floor(Math.random()*10)
     });
   }
 
@@ -52,14 +52,11 @@ class Numbers extends Component {
   }
  
   componentDidUpdate(prevProps, prevState) {
-    console.log(" CN did Update ?")
+    console.log(" CN did/after Update ?")
   }
+  
   componentWillUpdate(nextProps, nextState){
-    console.log("CN will Update ?")
-  }
- 
-  shouldComponentUpdate (nextProps, nextState) {
-    console.log("Should CN Update ?")    
+    console.log("CN will/before Update ?")
   }
   
   
