@@ -5,75 +5,70 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Marks  />
+        <Cycle  />
       </div>
     );
   }
 }
 
 /// Make default props
-class Marks extends Component {
+class Cycle extends Component {
  //define default states here in constructor
-  constructor(props) {
+ constructor(props) {
     super(props);
     this.state = {
-      name: "Sagar V Pednekar",
-      totalMarks: 550,
-      subjects: ["s-Maths", "s-English", "s-Marathi", "s-History", "s-Science"],
-      subjectWiseMarks: {
-        "Maths": 138,
-        "Marathi": 78,
-        "Hindi": 82,
-        "English": 51,
-        "History": 92,
-        "Science": 94
-      }
+      myNumber: 0
     }
-  this.handleReverse = this.handleReverse.bind(this);
-  this.handleSort = this.handleSort.bind(this);
+    this.handleRandom = this.handleRandom.bind(this)
   }
-
-  handleReverse(){
-    this.setState( {subjects: this.state.subjects.reverse()} );
-  }
-  handleSort(){
+  handleRandom(){
     this.setState({
-      subjects: this.state.subjects.sort()
+      myNumber: Math.floor(Math.random()*100)
     });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.handleSort}>Sort</button>
-        <button onClick={this.handleReverse}>Reverse</button>
-        <h1 >Your Marks details: </h1>
-        <ul>
-        <Subject subjects={this.state.subjects} />
-          <li>{this.state.name}</li>
-          <li>Total Marks : {this.state.totalMarks}</li>  
-          <li>Subject Wise Marks:
-            <ul>
-              <li>Maths : {this.state.subjectWiseMarks.Maths}</li>
-              <li>English: {this.state.subjectWiseMarks.English}</li>
-              <li>Marathi: {this.state.subjectWiseMarks.Marathi}</li>
-              <li>History:  {this.state.subjectWiseMarks.History}</li>
-              <li>Science: {this.state.subjectWiseMarks.Science}</li>
-            </ul>
-          </li>
-        </ul>
+        <button onClick={this.handleRandom}>Random Number</button>
+        <h1 >Component Lifescycle </h1>
+          <Numbers myNumber= {this.state.myNumber}/>
       </div>
     )
   }
 }
 
-class Subject extends Component {
+class Numbers extends Component {
+
+  componentDidMount(){
+    console.log("This is did mount & called afer component is mounted")
+  }
+  componentWillMount(){
+    console.log("Wil mount -Component is About to mount")
+
+  }
+  componentWillReceiveProps(nextProps)  {
+    console.log("Called when on click of random buttoon and Number component receives props ") 
+  }
+ 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(" CN did Update ?")
+  }
+  componentWillUpdate(nextProps, nextState){
+    console.log("CN will Update ?")
+  }
+ 
+  shouldComponentUpdate (nextProps, nextState) {
+    console.log("Should CN Update ?")    
+  }
+  
+  
+
+
   render() {
     return (
       <div>
-         <li >Courses: {this.props.subjects.map((subject,i)=>{
-           return <p>{subject}</p>
-         })}</li>
+        {this.props.myNumber}
       </div>
     )
   }
