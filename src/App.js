@@ -38,7 +38,9 @@ class Marks extends Component{
         <ul>
           <li>{this.props.name}</li>
           <li>Total Marks : {this.props.totalMarks}</li>
-          <li>Courses: {this.props.subjects}</li>
+          <li>Courses: {this.props.subjects.map((course,i)=>{
+            return <p key={i}> {course} </p>
+          })}</li>
           <li>Subject Wise Marks:
             <ul>
               <li>Maths : { this.props.subjectWiseMarks.Maths}</li>
