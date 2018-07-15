@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import Navigation from './components/Navigation';
 import Header from './components/Header';
-import Intro from './components/Intro'
+import Content from './components/Content';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-       <Parent msg= "This msg is for parent " />
-       
+      <div >
+      <Navigation />
+      <Header />
+      <Content />
+      <Footer />
       </div>
     );
   }
@@ -21,9 +25,9 @@ class Parent extends Component {
     return (
       <div>
         <h1>Msg: {this.props.msg}</h1>
-        <Child msg = "Message for Child component"/>
-        <p> {this.props.names.map((name, i) =>{
-            return " "+ name
+        <Child msg="Message for Child component" />
+        <p> {this.props.names.map((name, i) => {
+          return " " + name
         })}</p>
       </div>
     )
@@ -36,9 +40,9 @@ Parent.defaultProps = {
     "Shraddha"
   ]
 }
-class Child extends Component{
-  render(){
-    return(
+class Child extends Component {
+  render() {
+    return (
       <div>
         <h1>{this.props.msg}</h1>
       </div>
